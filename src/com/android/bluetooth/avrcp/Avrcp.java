@@ -450,6 +450,13 @@ public final class Avrcp {
                                 }
                             }
                         }
+                        if (mPlayerStatusChangeNT == NOTIFICATION_TYPE_INTERIM) {
+                            Log.v(TAG,"Send Player appl attribute changed response");
+                            mPlayerStatusChangeNT = NOTIFICATION_TYPE_CHANGED;
+                            sendPlayerAppChangedRsp(mPlayerStatusChangeNT);
+                        } else {
+                            Log.v(TAG,"Drop Set Attr Val update from media player");
+                        }
                     break;
                     case GET_ATTRIBUTE_TEXT:
                         text = intent.getStringArrayExtra(EXTRA_ATTRIBUTE_STRING_ARRAY);
